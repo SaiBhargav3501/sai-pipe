@@ -1,0 +1,30 @@
+<div>
+  <input type="text" [(ngModel)]="filtertext"/>
+</div>
+<h3>total no students :{{totalStudents |async}}</h3>
+<h4>{{saiobj1|jsonformat}}</h4>
+<table id="student" >
+  <tr>
+    <th>Name</th>
+    <th>Course</th>
+    <th>Marks</th>
+    <th>Percentage</th>
+    <th>DOB</th>
+    <th>Gender</th>
+    <th>age</th>
+  </tr>
+    <tr *ngFor="let stds  of filteredStudents">
+      <td>{{stds.name}}</td>
+      <td>{{stds.course}}</td>
+  
+      <td><input type="number" value="stds.marks" [(ngModel)]="stds.marks" /></td>
+      <td>{{(stds.marks |saiPipe : total:2)| percent:'1.2-2'}}</td>
+      <td>{{stds.DOB|date:'fullDate'|uppercase }}</td>
+
+      <td>{{stds.gender}}</td>
+      <td>{{stds.DOB|age}}</td>
+    </tr>
+</table>
+
+<button (click)="adddummy()">add the data</button>
+<button (click)="changegender()">Change gender</button>
